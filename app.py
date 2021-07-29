@@ -37,6 +37,8 @@ def main():
     if st.button('Predict'):
         if not present_price or not kms_driven:
             st.error('Please fill the required fields')
+        elif not present_price.isnumeric() or not kms_driven.isnumeric():
+            st.error('Please enter valid values')
         else:
             price = predict_car_price(present_price, kms_driven, fuel_type, seller_type, transmission, owner, car_age)
             st.success('Predicted selling price: {} {:.2f} Lakhs'.format(u"\u20B9", price))
